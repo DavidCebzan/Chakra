@@ -1,25 +1,39 @@
 import React from "react";
-import { VStack, HStack, Text, IconButton } from "@chakra-ui/react";
+import { useState } from "react";
+import {
+  VStack,
+  HStack,
+  Text,
+  IconButton,
+  StackDivider,
+  Spacer,
+} from "@chakra-ui/react";
 import { IoMdDoneAll } from "react-icons/io";
 
-function Notelist() {
-  const notes = [
-    {
-      id: 1,
-      body: "Learn Chakra",
-    },
-    {
-      id: 2,
-      body: "Learn Electron",
-    },
-  ];
+function Notelist({notes, deleteNotes, setCompletedNotes}) {
+ 
+
 
   return (
-    <VStack>
+    <VStack
+      divider={<StackDivider />}
+      borderColor="#647c90"
+      borderWidth="1px"
+      p="4"
+      borderRadius="lg"
+      width="100%"
+      maxW={{ base: "90vw", sm: "80vw", lg: "50vw", xl: "40vw" }}
+      alignItems="stretch"
+    >
       {notes.map((note) => (
-        <HStack>
-            <Text>{note.body}</Text>
-            <IconButton icon={<IoMdDoneAll />}></IconButton>
+        <HStack key={note.id}>
+          <Text  decoration={!note.isDone ? '' : 'line-through'} >{note.body}</Text>
+          <Spacer/>
+          <IconButton
+            icon={<IoMdDoneAll />}
+           // onClick={() => setCompletedNotes(note)}
+            onDoubleClick={() => deleteNotes(note.id)}
+          ></IconButton>
         </HStack>
       ))}
     </VStack>
