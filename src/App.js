@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Heading, VStack, IconButton } from "@chakra-ui/react";
+import  Addnote  from "./components/Addnote";
+import  Notelist  from "./components/Notelist";
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <VStack p={4}>
+      <IconButton
+        icon={<MdDarkMode />}
+        alignSelf="start"                 
+      ></IconButton>
+      <Heading 
+      bgGradient="linear(to-t, #647c90, #746c70)"
+      fontWeight='extrabold'
+      bgClip='text'
+      >Notes App
+      </Heading>
+      <Addnote/>
+      <Notelist />
+    </VStack>
   );
 }
 
